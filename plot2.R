@@ -67,14 +67,22 @@ pwr[,Time:=hms(Time)]
 
 
 # Create Plot 2
+# Open a png plotting environment
 png(filename = "plot2.png", width = 480, height = 480, units = "px")
+
+# Create an empty plot with the x axis scaled to the range found in DateTime and 
+# the y axis scaled to Global_active_power
+# Set the x axis title as blank and the y axis title as Global Active Power (kilowatts)
 plot(pwr[,DateTime], 
      pwr[,Global_active_power], 
      type = "n", 
      xlab = "",
      ylab="Global Active Power (kilowatts)")
+     
+# Plot a line showing Global_active_power by DateTime
 lines(pwr[,DateTime], pwr[,Global_active_power])
 
+# Close the plotting environment
 dev.off()
 
 

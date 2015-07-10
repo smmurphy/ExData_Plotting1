@@ -67,11 +67,15 @@ pwr[,Time:=hms(Time)]
 
 
 # Create Plot 1
+# Open a png plotting environment
 png(filename = "plot1.png", width = 480, height = 480, units = "px")
+# Plot a histogram of Global_active_power set the color to red the title to
+# 'Global Active Power' and the title of the x axis to 'Global Active Power (kilowatts)'
 hist(pwr[,Global_active_power], 
      col = 'red',
      main = 'Global Active Power',
      xlab = 'Global Active Power (kilowatts)')
+# Close the plotting environment
 dev.off()
 
 

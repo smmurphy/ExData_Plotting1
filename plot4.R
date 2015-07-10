@@ -66,45 +66,79 @@ pwr[,Date:=fast_strptime(Date, format = "%d/%m/%Y")]
 pwr[,Time:=hms(Time)]
 
 # Create Plot 4
+# Open a png plotting environment
 png(filename = "plot4.png", width = 480, height = 480, units = "px")
 
+# Set the plot area to a 2 x 2 matrix of plots
 par(mfrow=c(2,2))
 
+# Create the first plot
+# Create an empty plot with the x axis scaled to the range found in DateTime and 
+# the y axis scaled to Global_active_power
+# Set the x axis title as blank and the y axis title as Global Active Power
 plot(pwr[,DateTime], 
      pwr[,Global_active_power], 
      type = "n", 
      xlab = "",
      ylab="Global Active Power")
+     
+# Plot a line showing Global_active_power by DateTime
 lines(pwr[,DateTime], pwr[,Global_active_power])
 
+# Create the second plot
+# Create an empty plot with the x axis scaled to the range found in DateTime and 
+# the y axis scaled to Voltage
+# Set the x axis title as datetime and the y axis title as Voltage
 plot(pwr[,DateTime], 
      pwr[,Voltage], 
      type = "n", 
      xlab = "datetime",
      ylab="Voltage")
+     
+# Plot a line showing Voltage by DateTime
 lines(pwr[,DateTime], pwr[,Voltage])
 
+# Create the third plot
+# Create an empty plot with the x axis scaled to the range found in DateTime and 
+# the y axis scaled to Sub_metering_1
+# Set the x axis title as blank and the y axis title as Energy sub metering
 plot(pwr[,DateTime], 
      pwr[,Sub_metering_1], 
      type = "n", 
      xlab = "",
      ylab="Energy sub metering")
+
+# Plot a line showing Sub_metering_1 by DateTime
 lines(pwr[,DateTime], pwr[,Sub_metering_1])
+
+# Plot a line showing Sub_metering_2 by DateTime set the color to red
 lines(pwr[,DateTime], pwr[,Sub_metering_2], col = 'red')
+
+# Plot a line showing Sub_metering_3 by DateTime set the color to blue
 lines(pwr[,DateTime], pwr[,Sub_metering_3], col = 'blue')
 
+# Create a legend in the top right corner that labels the lines Sub_metering_1, 
+# Sub_metering_2, Sub_metering_3, sets the line type to a solid line and the colors
+# to 'black', 'red', and 'blue'
 legend("topright",
        c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
        lty=c(1,1,1),
        col=c("black","red","blue"))
 
+# Create the fourth plot
+# Create an empty plot with the x axis scaled to the range found in DateTime and 
+# the y axis scaled to Global_reactive_power
+# Set the x axis title as blank and the y axis title as Global_reactive_power
 plot(pwr[,DateTime], 
      pwr[,Global_reactive_power], 
      type = "n", 
      xlab = "datetime",
      ylab="Global_reactive_power")
+
+# Plot a line showing Global_reactive_power by DateTime
 lines(pwr[,DateTime], pwr[,Global_reactive_power])
 
+# Close the plotting environment
 dev.off()
 
 

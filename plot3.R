@@ -66,22 +66,34 @@ pwr[,Date:=fast_strptime(Date, format = "%d/%m/%Y")]
 pwr[,Time:=hms(Time)]
 
 # Create Plot 3
+# Open a png plotting environment
 png(filename = "plot3.png", width = 480, height = 480, units = "px")
+
+# Create an empty plot with the x axis scaled to the range found in DateTime and 
+# the y axis scaled to Sub_metering_1
+# Set the x axis title as blank and the y axis title as Energy sub metering
 plot(pwr[,DateTime], 
      pwr[,Sub_metering_1], 
      type = "n", 
      xlab = "",
      ylab="Energy sub metering")
+
+# Plot a line showing Sub_metering_1 by DateTime
 lines(pwr[,DateTime], pwr[,Sub_metering_1])
+
+# Plot a line showing Sub_metering_2 by DateTime set the color to red
 lines(pwr[,DateTime], pwr[,Sub_metering_2], col = 'red')
+
+# Plot a line showing Sub_metering_3 by DateTime set the color to blue
 lines(pwr[,DateTime], pwr[,Sub_metering_3], col = 'blue')
 
+# Create a legend in the top right corner that labels the lines Sub_metering_1, 
+# Sub_metering_2, Sub_metering_3, sets the line type to a solid line and the colors
+# to 'black', 'red', and 'blue'
 legend("topright",
        c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"),
        lty=c(1,1,1),
        col=c("black","red","blue"))
 
+# Close the plotting environment
 dev.off()
-
-
-
